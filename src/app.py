@@ -9,8 +9,8 @@ from datastructures import FamilyStructure
 #from models import Person
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
-CORS(app)
+app.url_map.strict_slashes = False #it ignores the last slashes in a URL (if it exsist)
+CORS(app) #super important line
 
 # create the jackson family object
 jackson_family = FamilyStructure("Jackson")
@@ -24,19 +24,25 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
-
+#GET ALL THE MEMEBER
 @app.route('/members', methods=['GET'])
-def handle_hello():
+def get_all_members():
+    everyone = jackson_family.get_all_members()
+    return jsonify(everyone), 200
 
-    # this is how you can use the Family datastructure by calling its methods
-    members = jackson_family.get_all_members()
-    response_body = {
-        "hello": "world",
-        "family": members
-    }
+#GET ONE MEMBER BY ID ASSIGNED
+@app.route('/member/<int:id>', methods=['GET'])
+def get_one_member(id):
+    everyone = jackson_family.get_member(id)
+    return jsonify(everyone), 200
 
-
-    return jsonify(response_body), 200
+#C —> Create—>  Post (Insert Data)
+@app.route('/member', methods=['POST'])
+def add_member():
+    person = request.json
+    jackson_family.add_member(person)
+    print(person)
+    return "", 200
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
