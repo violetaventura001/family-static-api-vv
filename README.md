@@ -14,6 +14,10 @@ The Jackson Family needs a static API! We need to build the *data structures* an
 
 5. Test your code by running `$ pipenv run test`
 
+## ✅ Automatic grading
+
+Test your code by running `$ pipenv run test`
+
 ## 📝 Instructions
 
 - Create the code needed to implement the API endpoints described further below.  
@@ -28,7 +32,7 @@ The Jackson Family needs a static API! We need to build the *data structures* an
 
 ## Data structures
 
-Every **member** of the Doe family must be a dictionary - equivalent of [Objects Literals in JS](https://www.dyn-web.com/tutorials/object-literal/) - and have these values:
+Every **member** of the Jackson family must be a dictionary - equivalent of [Objects Literals in JS](https://www.dyn-web.com/tutorials/object-literal/) - and have these values:
 
 ```js
     + id: Int
@@ -83,15 +87,15 @@ Note: don't forget to Initialize the class: `doe_family = Family('Doe')` *before
 ## These are the initial Family Members
 
 ```md
-John Doe
+John Jackson
 33 Years old
 Lucky Numbers: 7, 13, 22
 
-Jane Doe
+Jane Jackson
 35 Years old
 Lucky Numbers: 10, 14, 3
 
-Jimmy Doe
+Jimmy Jackson
 5 Years old
 Lucky Numbers: 1
 ```
@@ -132,9 +136,9 @@ status_code: 200 if success. 400 if bad request (wrong info) screw up, 500 if th
 BODY: //the member's json object
 
 {
-    name: String,
-    age: Int,
-    lucky_numbers: []
+    "first_name": String,
+    "age": Int,
+    "lucky_numbers": List
 }
 
 ```
